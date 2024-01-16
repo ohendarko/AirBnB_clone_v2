@@ -114,15 +114,52 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """ Create an object of any class"""
+        """ Create a new class instance with given key/values and print its id.
+        Usage: create <class> <key1>=value1> <key2>=<value2> ... .
+        """
         if not args:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+        #split the command into class name and parameters
+        new_cmd_syntax = args.split(" ")
+        class_name = new_cmd_syntax[0]
+        params = new_cmd_syntax[1:]
+
+        if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
-        storage.save()
+        #because we'll be using environmental variables
+        #we will extract and process the params
+        params_dict = {}
+        for param in params:
+            key, value = param.split('=')
+
+        #handle escaped double quotes and replcae underscores with spaces
+        value = value.replace('\\"', '"').replace("_", " ")
+
+        #remove double quotes at beginning and end
+        value = value.strip('"')
+
+        #Convert value to appropriate type
+        try:
+            if '.' in value:
+                #Float
+                value = float(value)
+            else:
+                #Interget
+                value = int(value)
+        except ValueError:
+            #Default, leave its a string
+            pass
+
+        #update params dict
+        params_dict[key] = value
+
+        #creates a new instance of the specified class
+        new_instance = HBNBCommand.classes[class_name](**params_dict)
+
+        #Save the new instance and print its ID
+        new_instance.save()
         print(new_instance.id)
         storage.save()
 
