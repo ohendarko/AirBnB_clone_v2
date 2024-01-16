@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
                 pline = pline[2].strip()  # pline is now str
                 if pline:
                     # check for *args or **kwargs
-                    if pline[0] is '{' and pline[-1] is'}'\
+                    if pline[0] is '{' and pline[-1] is '}'\
                             and type(eval(pline)) is dict:
                         _args = pline
                     else:
@@ -120,7 +120,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        #split the command into class name and parameters
+        # split the command into class name and parameters
         new_cmd_syntax = args.split(" ")
         class_name = new_cmd_syntax[0]
         params = new_cmd_syntax[1:]
@@ -129,38 +129,37 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        #because we'll be using environmental variables
-        #we will extract and process the params
+        # because we'll be using environmental variables
+        # we will extract and process the params
         params_dict = {}
         for param in params:
             key, value = param.split('=')
 
-            #handle escaped double quotes and replcae underscores with spaces
+            # handle escaped double quotes and replcae underscores with spaces
             value = value.replace('\\"', '"').replace("_", " ")
 
-            #remove double quotes at beginning and end
+            # remove double quotes at beginning and end
             value = value.strip('"')
 
-        #Convert value to appropriate type
+        # Convert value to appropriate type
         try:
             if '.' in value:
-                #Float
+                # Float
                 value = float(value)
             else:
-                #Interget
+                # Interget
                 value = int(value)
         except ValueError:
-            #Default, leave its a string
+            # Default, leave its a string
             pass
 
-        #update params dict
+        # update params dict
         params_dict[key] = value
 
-        #creates a new instance of the specified class
+        # creates a new instance of the specified class
         new_instance = HBNBCommand.classes[class_name](params_dict)
-    
 
-        #Save the new instance and print its ID
+        # Save the new instance and print its ID
         new_instance.save()
         print(new_instance.id)
         storage.save()
@@ -358,6 +357,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
