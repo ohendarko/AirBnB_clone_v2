@@ -128,17 +128,18 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
+
         #because we'll be using environmental variables
         #we will extract and process the params
         params_dict = {}
         for param in params:
             key, value = param.split('=')
 
-        #handle escaped double quotes and replcae underscores with spaces
-        value = value.replace('\\"', '"').replace("_", " ")
+            #handle escaped double quotes and replcae underscores with spaces
+            value = value.replace('\\"', '"').replace("_", " ")
 
-        #remove double quotes at beginning and end
-        value = value.strip('"')
+            #remove double quotes at beginning and end
+            value = value.strip('"')
 
         #Convert value to appropriate type
         try:
@@ -156,7 +157,8 @@ class HBNBCommand(cmd.Cmd):
         params_dict[key] = value
 
         #creates a new instance of the specified class
-        new_instance = HBNBCommand.classes[class_name](**params_dict)
+        new_instance = HBNBCommand.classes[class_name](params_dict)
+    
 
         #Save the new instance and print its ID
         new_instance.save()
