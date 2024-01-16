@@ -8,9 +8,15 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
 
-    def all(self):
-        """Returns a dictionary of models currently in storage"""
-        return FileStorage.__objects
+    def all(self,cls=None):
+        """Returns a dictionary or list of objects in storage
+        If cls != None then it filters the objects by the cls
+        """
+        if cls == None:
+            return FileStorage.__objects
+        else:
+            object_filter = {key: value for key, value in FileStorage.__objects.items()}
+            return object_filter
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -48,3 +54,14 @@ class FileStorage:
                         self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
+
+    #Temporary. Check this again before you merge
+    def delete(self, obj=None):
+        """ delets obj from __objects"""
+        if obj == None:
+            pass
+        else:
+            key = "{}.{}".format(type(obj).__name__, obj.id)
+            if key in self.__objects:
+                del self.__objects[key]
+
