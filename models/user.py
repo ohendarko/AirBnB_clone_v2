@@ -13,7 +13,7 @@ class User(BaseModel, Base):
     first_name (sqlalchemy String): User first name.
     last_name (sqlalchemy String): User last name.
     """
-    __table__name = "users"
+    __tablename__ = "users"
     email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
     first_name = Column(String(128))
