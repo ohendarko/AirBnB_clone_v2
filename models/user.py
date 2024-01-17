@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 """This module defines a class User"""
-from models.base_model import BaseModel, Base
-from models.base_model import  Base
-from sqlalchemy import String
-from sqlalchemy import String
+from models.base_model import BaseModel
+from sqlalchemy import String, Column
 
-class User(BaseModel, Base):
+class User(BaseModel):
     """Defines a user by various attributes for mySQL db
     Inherits from SQLAlchemy's Base and links to a table called user.
     Attributes:
