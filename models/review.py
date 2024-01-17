@@ -4,6 +4,10 @@ from models.base_model import BaseModel, Base
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, ForeignKey, String
 
+#error message absent
+if "reviews" in Base.metadata.tables:
+    Base.metadata.remove(Base.metadata.tables["reviews"])
+
 
 class Review(BaseModel, Base):
     """ Review class to store review information """
