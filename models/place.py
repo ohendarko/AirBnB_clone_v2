@@ -3,13 +3,13 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import String, Column, ForeignKey, Integer, Float, Table
 from sqlalchemy.orm import relationship
-
+from models.amenity import Amenity
 # fixes the bug
 if 'places' in Base.metadata.tables:
     Base.metadata.remove(Base.metadata.tables['places'])
 
 # Defining the place_amenity table for Many-To-Many relationship
-place_amenity = Table(
+place_amenity_association = Table(
     'place_amenities', Base.metadata,
     Column('place_id', String(60), ForeignKey('places.id'), primary_key=True, nullable=False),
     Column('amenity_id', String(60), ForeignKey('amenities.id'), primary_key=True, nullable=False),
@@ -32,7 +32,7 @@ class Place(BaseModel, Base):
     longitude = Column("longitude", Float, nullable=True)
 
     reviews = relationship('Review', backref='place', cascade='all, delete-orphan')
-    amenities = relationship('Amenity', secondary=place_amenity, viewonly=False)
+    amenities = relationship('Amenity', secondary=place_amenity_association, viewonly=True)
     @property
     def reviews(self):
         """Getter for reviews in FileStorage"""
@@ -49,7 +49,8 @@ class Place(BaseModel, Base):
 
     @amenities.setter
     def amenities(self, amenity_obj):
-        from models.amenity import Amenity
         """Setter attr for amenities in FileStorage"""
+        from models.amenity import Amenity
         if isinstance(amenity_obj, Amenity):
-            self.amenity_ids.append(amenity_obj.id)
+            if amenity_obj not in self.amenities:
+                self.amenity_ids.append(amenity_obj)

@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd615543-b181-4703-b359-008250b8e21d" name="Changes" comment="Added comments">
+    <list default="true" id="dd615543-b181-4703-b359-008250b8e21d" name="Changes" comment="Fixed bugs i think. bugs still in console .py Added comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/amenity.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/amenity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/place.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/place.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/review.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +118,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705544687899</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed bugs i think. bugs still in console .py Added comments">
+      <option name="closed" value="true" />
+      <created>1705545941335</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1705545941335</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -130,6 +138,7 @@
     <MESSAGE value="Task 9???" />
     <MESSAGE value="Task 10???" />
     <MESSAGE value="Added comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added comments" />
+    <MESSAGE value="Fixed bugs i think. bugs still in console .py Added comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bugs i think. bugs still in console .py Added comments" />
   </component>
 </project>
