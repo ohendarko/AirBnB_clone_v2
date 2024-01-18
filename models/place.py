@@ -1,8 +1,14 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
 from models.base_model import BaseModel, Base
-from sqlalchemy import String, Column, ForeignKey, Integer, Float
+from sqlalchemy import String, Column, ForeignKey, Integer, Float, Table
 from sqlalchemy.orm import relationship
+
+place_amenity = Table(
+    'place_amenities', Base.metadata,
+    Column('place_id', String(60), ForeignKey('places.id'), primary_key=True, nullable=False),
+    Column('amenity_id', String(60), ForeignKey('amenities.id'), primary_key=True, nullable=False)
+)
 
 
 class Place(BaseModel, Base):
@@ -20,10 +26,24 @@ class Place(BaseModel, Base):
     longitude = Column("longitude", Float, nullable=True)
 
     reviews = relationship('Review', backref='place', cascade='all, delete-orphan')
-
+    amenities = relationship('Amenity', secondary=place_amenity, viewonly=False)
     @property
     def reviews(self):
         """Getter for reviews in FileStorage"""
         from models import storage
         review_instances = storage.all('Review')
         return [review for review in review_instances.values() if review.place_id == self.id]
+
+    @property
+    def amenities(self):
+        """Getter attr for amenities in FileStorage"""
+        from models import storage
+        amenity_instances = storage.all('Amenity')
+        return [amenity for amenity in amenity_instances.values() if amenity.id in self.amenity_ids]
+
+    @amenities.setter
+    def amenities(self, amenity_obj):
+        from models.amenity import Amenity
+        """Setter attr for amenities in FileStorage"""
+        if isinstance(amenity_obj, Amenity):
+            self.amenity_ids.append(amenity_obj.id)
