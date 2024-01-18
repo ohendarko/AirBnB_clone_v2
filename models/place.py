@@ -4,11 +4,16 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import String, Column, ForeignKey, Integer, Float, Table
 from sqlalchemy.orm import relationship
 
+# fixes the bug
+if 'places' in Base.metadata.tables:
+    Base.metadata.remove(Base.metadata.tables['places'])
+
 # Defining the place_amenity table for Many-To-Many relationship
 place_amenity = Table(
     'place_amenities', Base.metadata,
     Column('place_id', String(60), ForeignKey('places.id'), primary_key=True, nullable=False),
-    Column('amenity_id', String(60), ForeignKey('amenities.id'), primary_key=True, nullable=False)
+    Column('amenity_id', String(60), ForeignKey('amenities.id'), primary_key=True, nullable=False),
+    extend_existing=True  # to allow redefinition
 )
 
 

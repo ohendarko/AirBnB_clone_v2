@@ -5,6 +5,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer, CHAR, ForeignKey
 from sqlalchemy.orm import relationship
 
+# fixes the bug
+if 'cities' in Base.metadata.tables:
+    Base.metadata.remove(Base.metadata.tables['cities'])
+
 
 class City(BaseModel, Base):
     """ The city class, contains state ID and name """

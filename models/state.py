@@ -4,6 +4,10 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, CHAR, ForeignKey, create_engine
 from sqlalchemy.orm import relationship
 
+# fixes the bug
+if 'states' in Base.metadata.tables:
+    Base.metadata.remove(Base.metadata.tables['states'])
+
 
 
 class State(BaseModel, Base):
