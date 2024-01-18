@@ -11,24 +11,24 @@ class DBStorage:
     __engine = None
     __session = None
 
-    def __int__(self):
+    def __init__(self):
         """pending"""
         user = os.getenv("HBNB_MYSQL_USER")
         password = os.getenv("HBNB_MYSQL_PWD")
         hostname = os.getenv("HBNB_MYSQL_HOST")
         database = os.getenv("HBNB_MYSQL_DB")
         env = os.environ.get('HBNB_ENV')
+
         connection_string = f'mysql+mysqldb://{user}:{password}@{hostname}/{database}?charset=utf8'
 
-        if env == 'test':
+        """if env == 'test':
             # adjusts the connection_string based on
             # whether the environment is set to 'test' or not.
             connection_string += '&hostname=localhost&port=3306&charset=utf8'
         else:
             connection_string += '&pool_pre_ping=True'
-
+        """
         self.__engine = create_engine(connection_string, pool_pre_ping=True)
-
         if env == 'test':
             # drop all tables if the environment variable
             # HBNB_ENV is equal to test

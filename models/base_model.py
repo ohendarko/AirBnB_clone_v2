@@ -4,23 +4,23 @@ import uuid
 from datetime import datetime
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, String, Integer, CHAR
-import datetime
+from datetime import datetime
 
 
 Base = declarative_base()
 class BaseModel:
     """A base class for all hbnb models"""
     id = Column("id", String(60), unique=True, primary_key=True, nullable=False)
-    created_at = Column("created_at", nullable=False, default=datetime.datetime.utcnow())
-    updated_at = Column("updated_at", nullable=False, default=datetime.datetime.utcnow())
+    created_at = Column("created_at", nullable=False, default=datetime.utcnow())
+    updated_at = Column("updated_at", nullable=False, default=datetime.utcnow())
 
     def __init__(self, *args, **kwargs):
         """Instantiates a new model"""
         if not kwargs:
             # initialize from scratch
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.datetime.utcnow()
-            self.updated_at = datetime.datetime.utcnow()
+            self.created_at = datetime.utcnow()
+            self.updated_at = datetime.utcnow()
 
         else: #if key, value pair present
             for key, value in kwargs.items():
@@ -31,12 +31,19 @@ class BaseModel:
                 #  string representation of the datetime to a datetime object using strptime
                 # Chat's idea
                 if 'updated_at' in kwargs:
-                    kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
+                    if isinstance(kwargs['updated_at'], str):
+                        kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
+                                                                 '%Y-%m-%dT%H:%M:%S.%f')
+                    else:
+                        # No need to convert if it's already a datetime object
+                        pass
                 if 'created_at' in kwargs:
-                    kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
-
+                    if isinstance(kwargs['created_at'], str):
+                        kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
+                                                                 '%Y-%m-%dT%H:%M:%S.%f')
+                    else:
+                        # No need to convert if it's already a datetime object
+                        pass
     def __str__(self):
         """Returns a string representation of the instance"""
         cls = (str(type(self)).split('.')[-1]).split('\'')[0]
