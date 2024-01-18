@@ -62,8 +62,8 @@ class BaseModel:
         dictionary = self.__dict__.copy()
         dictionary['__class__'] = type(self).__name__
         if '_sa_instance_state' in dictionary:
-        # If the '_sa_instance_state' key is present in the dictionary
-        # (which is added by SQLAlchemy for its internal use), it is removed.
+            # If the '_sa_instance_state' key is present in the dictionary
+            # (which is added by SQLAlchemy for its internal use), it is removed.
             del dictionary['_sa_instance_state']
             # This ensures that only the user-defined attributes
             # are included in the dictionary

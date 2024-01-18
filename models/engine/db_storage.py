@@ -21,6 +21,9 @@ class DBStorage:
 
         connection_string = f'mysql+mysqldb://{user}:{password}@{hostname}/{database}?charset=utf8'
 
+        # started having issues so commented it out.
+        # Issues didn't resolve but I started getting different debug messages
+        # Counts I guess lol
         """if env == 'test':
             # adjusts the connection_string based on
             # whether the environment is set to 'test' or not.

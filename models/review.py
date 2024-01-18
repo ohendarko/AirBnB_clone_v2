@@ -6,7 +6,7 @@ from sqlalchemy import Column, ForeignKey, String
 
 
 class Review(BaseModel):
-    """ Review classto store review information """
+    """ Review class to store review information """
     __tablename__ = "reviews"
     place_id = Column("text", String(60), ForeignKey('places.id'), nullable=False)
     user_id = Column("text", String(60), ForeignKey('users.id'), nullable=False)

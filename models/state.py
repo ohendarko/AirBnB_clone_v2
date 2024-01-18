@@ -18,7 +18,7 @@ class State(BaseModel, Base):
     # with state_id equals to the current
     @property
     def cities(self):
-        """getter attribute for citiies in FileStorage"""
+        """getter attribute for cities in FileStorage"""
         from models import storage
         city_instances = storage.all('City')
         return [city for city in city_instances.values() if city.state_id == self.id]
