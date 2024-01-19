@@ -8,14 +8,15 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
 
-    def all(self,cls=None):
+    def all(self, cls=None):
         """Returns a dictionary or list of objects in storage
         If cls != None then it filters the objects by the cls
         """
-        if cls == None:
+        if cls is None:
             return FileStorage.__objects
         else:
-            object_filter = {key: value for key, value in FileStorage.__objects.items()}
+            object_filter = {key: value for key, value
+                             in FileStorage.__objects.items()}
             return object_filter
 
     def new(self, obj):
@@ -50,14 +51,15 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r', encoding='utf-8') as f:
                 temp = json.load(f)
                 for key, val in temp.items():
-                    self.all()[key] = classes.get(val['__class__'], BaseModel)(**val)
+                    self.all()[key] = classes.get(val['__class__'],
+                                                  BaseModel)(**val)
         except (FileNotFoundError, json.decoder.JSONDecodeError):
             pass
 
-    #Temporary. Check this again before you merge
+    # Temporary. Check this again before you merge
     def delete(self, obj=None):
         """ delets obj from __objects"""
-        if obj == None:
+        if obj is None:
             pass
         else:
             key = "{}.{}".format(type(obj).__name__, obj.id)

@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dd615543-b181-4703-b359-008250b8e21d" name="Changes" comment="Errors in console.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file.json" beforeDir="false" afterPath="$PROJECT_DIR$/file.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/amenity.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/amenity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/review.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +39,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/KOD/ALX/AirBnB_clone_v2",
+    "last_opened_file_path": "//wsl$/Ubuntu/home/ohendarko/alx-higher_level_programming/0x0F-python-object_relational_mapping",
     "settings.editor.selected.configurable": "preferences.fileTypes"
   }
 }]]></component>

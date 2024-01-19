@@ -19,7 +19,8 @@ class DBStorage:
         database = os.getenv("HBNB_MYSQL_DB")
         env = os.environ.get('HBNB_ENV')
 
-        connection_string = f'mysql+mysqldb://{user}:{password}@{hostname}/{database}?charset=utf8'
+        connection_string = (f'mysql+mysqldb: //{user}: {password}@{hostname}/'
+                             f'{database}?charset=utf8')
 
         # started having issues so commented it out.
         # Issues didn't resolve but I started getting different debug messages

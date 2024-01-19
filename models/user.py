@@ -10,8 +10,10 @@ if 'users' in Base.metadata.tables:
 
 user_review_association = Table(
     'user_reviews', Base.metadata,
-    Column('user_id', String(60), ForeignKey('users.id'), primary_key=True, nullable=False),
-    Column('review_id', String(60), ForeignKey('reviews.id'), primary_key=True, nullable=False),
+    Column('user_id', String(60),
+           ForeignKey('users.id'), primary_key=True, nullable=False),
+    Column('review_id', String(60),
+           ForeignKey('reviews.id'), primary_key=True, nullable=False),
     extend_existing=True  # To allow redefinition
 )
 
@@ -32,5 +34,7 @@ class User(BaseModel, Base):
     first_name = Column(String(128), nullable=True)
     last_name = Column(String(128), nullable=True)
 
-    places = relationship('Place', backref='user', cascade='all, delete-orphan')
-    reviews = relationship('Review', backref='user', cascade='all, delete-orphan')
+    places = relationship('Place', backref='user',
+                          cascade='all, delete-orphan')
+    reviews = relationship('Review', backref='user',
+                           cascade='all, delete-orphan')

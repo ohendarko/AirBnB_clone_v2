@@ -8,11 +8,16 @@ from datetime import datetime
 
 
 Base = declarative_base()
+
+
 class BaseModel:
     """A base class for all hbnb models"""
-    id = Column("id", String(60), unique=True, primary_key=True, nullable=False)
-    created_at = Column("created_at", nullable=False, default=datetime.utcnow())
-    updated_at = Column("updated_at", nullable=False, default=datetime.utcnow())
+    id = Column("id", String(60), unique=True,
+                primary_key=True, nullable=False)
+    created_at = Column("created_at", nullable=False,
+                        default=datetime.utcnow())
+    updated_at = Column("updated_at", nullable=False,
+                        default=datetime.utcnow())
 
     def __init__(self, *args, **kwargs):
         """Instantiates a new model"""
@@ -22,28 +27,35 @@ class BaseModel:
             self.created_at = datetime.utcnow()
             self.updated_at = datetime.utcnow()
 
-        else: #if key, value pair present
+        else:  # if key, value pair present
             for key, value in kwargs.items():
                 if key not in ['__class__', 'created_at', 'updated_at']:
-                    setattr(self, key, value) # create instance attributes from the dictionary.
+                    setattr(self, key, value)  # create instance attributes
+                    # from the dictionary.
 
-                #  If 'created_at' or 'updated_at' is present in kwargs, it converts the
-                #  string representation of the datetime to a datetime object using strptime
-                # Chat's idea
+                #  If 'created_at' or 'updated_at' is present in kwargs,
+                #  it converts the string representation of the datetime
+                #  to a datetime object using strptime
+                #  Chat's idea
                 if 'updated_at' in kwargs:
                     if isinstance(kwargs['updated_at'], str):
-                        kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                                 '%Y-%m-%dT%H:%M:%S.%f')
+                        kwargs['updated_at'] = (datetime.strptime
+                                                (kwargs['updated_at'],
+                                                 '%Y-%m-%dT%H:%M:'
+                                                 '%S.%f'))
                     else:
                         # No need to convert if it's already a datetime object
                         pass
                 if 'created_at' in kwargs:
                     if isinstance(kwargs['created_at'], str):
-                        kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                                 '%Y-%m-%dT%H:%M:%S.%f')
+                        kwargs['created_at'] = (datetime.strptime
+                                                (kwargs['created_at'],
+                                                 '%Y-%m-%dT%H:'
+                                                 '%M:%S.%f'))
                     else:
                         # No need to convert if it's already a datetime object
                         pass
+
     def __str__(self):
         """Returns a string representation of the instance"""
         cls = (str(type(self)).split('.')[-1]).split('\'')[0]
@@ -63,7 +75,8 @@ class BaseModel:
         dictionary['__class__'] = type(self).__name__
         if '_sa_instance_state' in dictionary:
             # If the '_sa_instance_state' key is present in the dictionary
-            # (which is added by SQLAlchemy for its internal use), it is removed.
+            # (which is added by SQLAlchemy for its internal use),
+            # it is removed.
             del dictionary['_sa_instance_state']
             # This ensures that only the user-defined attributes
             # are included in the dictionary
