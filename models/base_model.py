@@ -64,7 +64,6 @@ class BaseModel:
     def save(self):
         """Updates updated_at with current time when instance is changed"""
         from models import storage
-        from models import storage
         self.updated_at = datetime.now()
         storage.new(self)
         storage.save()
@@ -80,8 +79,10 @@ class BaseModel:
             del dictionary['_sa_instance_state']
             # This ensures that only the user-defined attributes
             # are included in the dictionary
-        dictionary['created_at'] = self.created_at.isoformat()
-        dictionary['updated_at'] = self.updated_at.isoformat()
+        if self.created_at is not None:
+            dictionary['created_at'] = self.created_at.isoformat()
+        if self.updated_at is not None:
+            dictionary['updated_at'] = self.updated_at.isoformat()
         return dictionary
 
     def delete(self):

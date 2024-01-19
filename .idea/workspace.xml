@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd615543-b181-4703-b359-008250b8e21d" name="Changes" comment="Errors in console.py">
+    <list default="true" id="dd615543-b181-4703-b359-008250b8e21d" name="Changes" comment="pycodestyle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file.json" beforeDir="false" afterPath="$PROJECT_DIR$/file.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/base_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/base_model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705547387262</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="pycodestyle">
+      <option name="closed" value="true" />
+      <created>1705681394838</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1705681394838</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -146,6 +156,7 @@
     <MESSAGE value="Added comments" />
     <MESSAGE value="Fixed bugs i think. bugs still in console .py Added comments" />
     <MESSAGE value="Errors in console.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Errors in console.py" />
+    <MESSAGE value="pycodestyle" />
+    <option name="LAST_COMMIT_MESSAGE" value="pycodestyle" />
   </component>
 </project>
