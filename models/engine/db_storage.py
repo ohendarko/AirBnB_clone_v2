@@ -1,93 +1,80 @@
 #!/usr/bin/python3
-"""DOC pending"""
-from sqlalchemy import create_engine
+"""This module defines a class to manage db storage for hbnb clone"""
+from os import getenv
+from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker, scoped_session
+import models
 from models.base_model import Base
-import os
+from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class DBStorage:
-    """pending"""
+    """SQL database storage"""
     __engine = None
     __session = None
 
     def __init__(self):
-        """pending"""
-        user = os.getenv("HBNB_MYSQL_USER")
-        password = os.getenv("HBNB_MYSQL_PWD")
-        hostname = os.getenv("HBNB_MYSQL_HOST")
-        database = os.getenv("HBNB_MYSQL_DB")
-        env = os.environ.get('HBNB_ENV')
+        """Create engine and connect to database"""
+        user = getenv("HBNB_MYSQL_USER")
+        pwd = getenv("HBNB_MYSQL_PWD")
+        host = getenv("HBNB_MYSQL_HOST")
+        db = getenv("HBNB_MYSQL_DB")
+        envv = getenv("HBNB_ENV", "none")
 
-        connection_string = (f'mysql+mysqldb: //{user}: {password}@{hostname}/'
-                             f'{database}?charset=utf8')
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(
+            user, pwd, host, db), pool_pre_ping=True)
 
-        # started having issues so commented it out.
-        # Issues didn't resolve but I started getting different debug messages
-        # Counts I guess lol
-        """if env == 'test':
-            # adjusts the connection_string based on
-            # whether the environment is set to 'test' or not.
-            connection_string += '&hostname=localhost&port=3306&charset=utf8'
-        else:
-            connection_string += '&pool_pre_ping=True'
-        """
-        self.__engine = create_engine(connection_string, pool_pre_ping=True)
-        if env == 'test':
-            # drop all tables if the environment variable
-            # HBNB_ENV is equal to test
+        if envv == 'test':
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """query on the current database session (self.__session)
-        all objects depending of the class name (argument cls)"""
-        from models.user import User
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.place import Place
-        from models.review import Review
-
-        objects = []
-        query_classes = []
-
+        """returns a dictionary
+        Return:dictionary of __object
+        """
+        dic = {}
         if cls:
-            # if cls specified, use in query
-            if isinstance(cls, str):
-                query_class = globals().get(cls, None)
-                if query_classes:
-                    query_classes.append(query_class)
-            else:
-                query_classes.append(cls)
+            if type(cls) is str:
+                cls = eval(cls)
+            query = self.__session.query(cls)
+            for elem in query:
+                key = "{}.{}".format(type(elem).__name__, elem.id)
+                dic[key] = elem
         else:
-            # If cls is None, query all types of objects
-            query_classes = [User, State, City, Amenity, Place, Review]
-
-        for query_class in query_classes:
-            for obj in self.__session.query(query_class):
-                key = "{}.{}".format(obj.__class__.__name__, obj.id)
-                objects[key] = obj
-
-        return objects
+            lista = [State, City, User, Place, Review, Amenity]
+            for clase in lista:
+                query = self.__session.query(clase)
+                for elem in query:
+                    key = "{}.{}".format(type(elem).__name__, elem.id)
+                    dic[key] = elem
+        return (dic)
 
     def new(self, obj):
-        """add the object to the current database session
-        (self.__session)"""
+        """add the object to the current database session"""
         self.__session.add(obj)
-
-    def save(self):
-        """commit all changes of the current database session
-        (self.__session)"""
-        self.__session.commit()
 
     def delete(self, obj=None):
         """delete from the current database session obj if not None"""
-        if obj:
+        if obj is not None:
             self.__session.delete(obj)
 
+    def save(self):
+        """commits all changes of the current database session"""
+        self.__session.commit()
+
     def reload(self):
-        """Create all tables in the database and
-        create the current database session."""
-        Base.metadata.create_all(self.__engine)
-        Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        self.__session = scoped_session(Session)
+        """Create current database session from the engine
+        using a sessionmaker"""
+        self.__session = Base.metadata.create_all(self.__engine)
+        factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(factory)
+        self.__session = Session()
+
+    def close(self):
+        """Remove session"""
+        self.__session.close()
