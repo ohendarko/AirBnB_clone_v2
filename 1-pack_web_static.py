@@ -7,7 +7,9 @@ from datetime import datetime
 
 @task
 def do_pack(c):
-    """generates a .tgz archive"""
+    """
+    Funtion that Generates a .tgz archive
+    """
     local("mkdir -p versions")
     src = "web_static/"
     time = datetime.now().strftime("%Y%m%d%H%M%S")
