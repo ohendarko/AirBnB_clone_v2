@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from fabric import Connection, task,
 from fabric.api import local
 from datetime import datetime
 """Fabric script that generates a .tgz archive"""
