@@ -8,7 +8,7 @@ sudo mkdir -p /data/web_static/
 sudo mkdir -p /data/web_static/releases/
 sudo mkdir -p /data/web_static/shared/
 sudo mkdir -p /data/web_static/releases/test/
-echo "<html><body>Fake File</body></html>" > /data/web_static/releases/test/index.html
+sudo echo "<html><body>Fake File</body></html>" > /data/web_static/releases/test/index.html
 
 #Symbolic links
 sudo rm -rf /data/web_static/current
