@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 @task
-def do_pack(c):
+def do_pack():
     """
     Function that Generates a .tgz archive
     """
@@ -14,5 +14,5 @@ def do_pack(c):
     time = datetime.now().strftime("%Y%m%d%H%M%S")
     out = f"versions/web_static_{time}.tgz"
 
-    c.local(f"tar -czvf {out} {src}")
+    local(f"tar -czvf {out} {src}")
     return out
