@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # sets up your web servers for the deployment of web_static
 
+sudo apt-get update
 sudo apt-get -y install nginx
 mkdir -p /data/
 mkdir -p /data/web_static/
@@ -10,8 +11,8 @@ mkdir -p /data/web_static/releases/test/
 echo "<html><body>Fake File</body></html>" > /data/web_static/releases/test/index.html
 
 #Symbolic links
-rm -rf /data/web_static/current
-ln -s /data/web_static/releases/test/ /data/web_static/current
+sudo rm -rf /data/web_static/current
+sudo ln -s /data/web_static/releases/test/ /data/web_static/current
 
 #Ownership
 sudo chown -R ubuntu:ubuntu /data/
