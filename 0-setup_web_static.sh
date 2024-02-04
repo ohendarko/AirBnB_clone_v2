@@ -2,10 +2,10 @@
 # Sets up your web servers for the deployment of web_static
 
 apt-get update
-apt-get -y install nginx
+apt -y install nginx
 mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/shared/
-echo "<html><body>Fake File</body></html>" > /data/web_static/releases/test/index.html
+echo "<html><body>Fake File</body></html>" | tee /data/web_static/releases/test/index.html
 
 #Symbolic links
 ln -sf /data/web_static/releases/test/ /data/web_static/current
