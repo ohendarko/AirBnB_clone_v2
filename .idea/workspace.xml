@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dabeb5c4-1561-4f78-a9cb-ea4c40536737" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/2-do_deploy_web_static.py" beforeDir="false" afterPath="$PROJECT_DIR$/2-do_deploy_web_static.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airbnb-env/bin/python" beforeDir="false" afterPath="$PROJECT_DIR$/airbnb-env/bin/python" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airbnb-env/bin/python3" beforeDir="false" afterPath="$PROJECT_DIR$/airbnb-env/bin/python3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airbnb-env/bin/python3.10" beforeDir="false" afterPath="$PROJECT_DIR$/airbnb-env/bin/python3.10" afterDir="false" />
