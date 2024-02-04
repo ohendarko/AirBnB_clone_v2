@@ -3,16 +3,12 @@
 
 apt-get update
 apt-get -y install nginx
-mkdir -p /data/
-mkdir -p /data/web_static/
-mkdir -p /data/web_static/releases/
-mkdir -p /data/web_static/shared/
 mkdir -p /data/web_static/releases/test/
+mkdir -p /data/web_static/shared/
 echo "<html><body>Fake File</body></html>" > /data/web_static/releases/test/index.html
 
 #Symbolic links
-rm -rf /data/web_static/current
-ln -s /data/web_static/releases/test/ /data/web_static/current
+ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 #Ownership
 chown -R ubuntu:ubuntu /data/
