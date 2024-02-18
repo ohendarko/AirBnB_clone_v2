@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dabeb5c4-1561-4f78-a9cb-ea4c40536737" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/web_flask/templates/8-cities_by_state.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/7-dump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/7-dump.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airbnb-env/bin/python" beforeDir="false" afterPath="$PROJECT_DIR$/airbnb-env/bin/python" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airbnb-env/bin/python3" beforeDir="false" afterPath="$PROJECT_DIR$/airbnb-env/bin/python3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airbnb-env/bin/python3.10" beforeDir="false" afterPath="$PROJECT_DIR$/airbnb-env/bin/python3.10" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airbnb-env/lib64" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/place.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/place.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_flask/7-states_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_flask/7-states_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_flask/8-cities_by_states.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_flask/8-cities_by_states.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_flask/templates/5-number.html" beforeDir="false" afterPath="$PROJECT_DIR$/web_flask/templates/5-number.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_flask/templates/7-states_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/web_flask/templates/7-states_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
