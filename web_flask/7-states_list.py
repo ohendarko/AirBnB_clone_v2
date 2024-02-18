@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """a script that starts a Flask web application"""
 from flask import Flask
-from markupsafe import escape
 from flask import render_template
 from models import storage
 from models.state import State
+
 app = Flask(__name__)
 
 
