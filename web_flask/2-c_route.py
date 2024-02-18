@@ -21,8 +21,7 @@ def hbnb():
 def c_text(text):
     """display “C ” followed by the value of the text variable
     (replace underscore _ symbols with a space )"""
-    if text == '_':
-        text.replace('_', ' ')
+    text = text.replace('_', ' ')
     return f"C {escape(text)}"
 
 
