@@ -1,0 +1,10 @@
+{% extends "9-states.html" %}
+{% block content %}
+    <H1>State: {{ state.name }}</H1>
+        <H3>Cities:</H3>
+        <UL>
+            {% for city in cities %}
+            <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
+            {% endfor %}
+        </UL>
+{% endblock content %}
