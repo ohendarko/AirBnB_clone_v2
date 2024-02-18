@@ -17,9 +17,7 @@ def remove_session(exc):
 @app.route("/states_list", strict_slashes=False)
 def states_list():
     """display a HTML page"""
-    states = sorted(
-        list(storage.all(State).values()), key=lambda s: s.name
-    )
+    states = sorted(storage.all(State).values(), key=lambda s: s.name)
     return render_template('7-states_list.html', states=states)
 
 
